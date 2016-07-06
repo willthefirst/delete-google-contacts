@@ -45,18 +45,18 @@ app.get('/manage', function(req, res) {
       bearer: oauth2Client.credentials.access_token
     },
     qs: {
-      'max-results': 5,
-      alt: 'json'
+      'max-results': 50,
+      'alt': 'json'
     },
     headers: {
-      'Data-Version': '3.0'
+      'GData-Version': '3.0'
     },
     json: true
   }, function(err, response, body) {
     var contacts = body.feed.entry;
     contacts = contacts.map(function(contact) {
       var formatted = {
-        id: contact.id['$t'],
+        id: contact.id['$t'].split('/base/')[1],
         name: '',
         email: ''
       };
@@ -73,6 +73,28 @@ app.get('/manage', function(req, res) {
     });
     
     res.render('manage', { contacts: contacts });
+  });
+});
+
+app.post('/delete', function(req, res) {
+  console.log('Delete', req.body);
+  request({
+    url: 'https://www.google.com/m8/feeds/contacts/default/full/' + req.body.contactId,
+    method: 'DELETE',
+    headers: {
+      'GData-Version': '3.0',
+      'If-Match': '*'
+    },
+    auth: {
+      bearer: oauth2Client.credentials.access_token
+    },
+  }, function(err, response, body) {
+    if (err) {
+      console.error('Server error:', err);
+      res.status(400).send('Error', err.message);
+    }
+    console.log(response.statusMessage, response.body);
+    res.status(response.statusCode).send(response.statusMessage);  
   });
 });
 

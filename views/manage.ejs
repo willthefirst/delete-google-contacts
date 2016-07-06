@@ -4,8 +4,20 @@
         <h1>Manage your Google Contacts</h1>
         <ul>
         <% for(var i = 0; i < contacts.length; i++) {%>
-           <li><%= contacts[i].name %> | <%= contacts[i].email %> | <%= contacts[i].id %></li>
+           <li><%= contacts[i].name %> | <%= contacts[i].email %> | <%= contacts[i].id %><a id="<%= contacts[i].id %>" href="#">Delete</a></li>
         <% } %>
         </ul>
+        <script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
+        <script>
+            console.log('ready');
+            $('li').on('click', 'a', function(e) {
+                e.preventDefault();
+                $.post( "/delete", {
+                    contactId: $(this).attr('id')
+                }, function( data ) {
+                  console.log('Response:', data);
+                });
+            });
+        </script>
     </body>
 </html>
