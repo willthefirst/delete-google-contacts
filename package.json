@@ -1,19 +1,19 @@
 {
-  "name": "chat-example",
+  "name": "delete-google-contacts",
   "version": "0.0.0",
-  "description": "A chat example to showcase how to use `socket.io` with a static `express` server with `async` for control flow.",
+  "description": "Delete your old Google contacts.",
   "main": "server.js",
   "repository": "",
-  "author": "Mostafa Eweda <mo.eweda@gmail.com>",
+  "author": "Will Moritz <willthefirst@gmail.com>",
   "dependencies": {
-    "async": "~0.2.8",
     "dotenv": "^2.0.0",
     "ejs": "^2.4.2",
     "express": "~3.2.4",
     "google-contacts": "^0.1.2",
     "googleapis": "^9.0.0",
+    "mongoose": "^4.5.3",
+    "querystring": "^0.2.0",
     "request": "^2.72.0",
-    "socket.io": "~0.9.14",
     "xml2js": "^0.4.17"
   }
 }

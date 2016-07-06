@@ -3,6 +3,14 @@
     <body>
         <h1>Manage your Google Contacts</h1>
         <ul>
+            <li>
+                <a>All</a>
+            </li>
+            <li>
+                <a>People who have never emailed me</a>
+            </li>
+        </ul>
+        <ul>
         <% for(var i = 0; i < contacts.length; i++) {%>
            <li><%= contacts[i].name %> | <%= contacts[i].email %> | <%= contacts[i].id %><a id="<%= contacts[i].id %>" href="#">Delete</a></li>
         <% } %>
