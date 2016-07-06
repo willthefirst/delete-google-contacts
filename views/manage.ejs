@@ -1,0 +1,11 @@
+<html>
+    <head></head>
+    <body>
+        <h1>Manage your Google Contacts</h1>
+        <ul>
+        <% for(var i = 0; i < contacts.length; i++) {%>
+           <li><%= contacts[i].name %> | <%= contacts[i].email %> | <%= contacts[i].id %></li>
+        <% } %>
+        </ul>
+    </body>
+</html>
